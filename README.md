@@ -10,15 +10,15 @@ kevintsafack.live) using GitHub Actions.
 
 ## Workflow Steps
 
-- Checkout: The first step checks out the repository code.
-- Login to Docker Hub: The workflow authenticates with Docker Hub using the provided credentials (DOCKERHUB_USERNAME and DOCKERHUB_TOKEN secrets).
-- Set up Docker Buildx: This step sets up the Docker Buildx environment, which allows for building multi-platform Docker images.
-- Docker meta: This step generates metadata for the Docker image, including the image name (${{ secrets.DOCKERHUB_USERNAME }}/kevinportfolio) and the tag (latest).
-- Build and push: The workflow builds the Docker image based on the Dockerfile in the repository and pushes the image to Docker Hub with the generated tags.
-- Deploy to server: In this step, the workflow establishes an SSH connection with the remote server using the provided credentials (SERVER_HOST, SERVER_USERNAME, and SERVER_SSH_KEY secrets). It then executes a series of commands on the server:
-    Stops any running containers
-    Prunes the Docker system to remove unused resources
-    Runs a new container using the recently pushed Docker image, mapping port 3000 of the container to the host
+1. Checkout: The first step checks out the repository code.
+2. Login to Docker Hub: The workflow authenticates with Docker Hub using the provided credentials (DOCKERHUB_USERNAME and DOCKERHUB_TOKEN secrets).
+3. Set up Docker Buildx: This step sets up the Docker Buildx environment, which allows for building multi-platform Docker images.
+4. Docker meta: This step generates metadata for the Docker image, including the image name (${{ secrets.DOCKERHUB_USERNAME }}/kevinportfolio) and the tag (latest).
+5. Build and push: The workflow builds the Docker image based on the Dockerfile in the repository and pushes the image to Docker Hub with the generated tags.
+6. Deploy to server: In this step, the workflow establishes an SSH connection with the remote server using the provided credentials (SERVER_HOST, SERVER_USERNAME, and SERVER_SSH_KEY secrets). It then executes a series of commands on the server:
+    - Stops any running containers
+    - Prunes the Docker system to remove unused resources
+    - Runs a new container using the recently pushed Docker image, mapping port 3000 of the container to the host
 
 ## Prerequisites
 To use this workflow, you need to set up the following secrets in your GitHub repository:
@@ -30,6 +30,6 @@ To use this workflow, you need to set up the following secrets in your GitHub re
   ## Usage
 Once the required secrets are set up, the workflow will automatically trigger on every push to the main branch of your repository. It will build a Docker image, push it to Docker Hub, and deploy the new image to the specified remote server.
 
-Note: Make sure to update the Dockerfile and the application code as needed for your specific project requirements. Mine is here => https://gist.github.com/8Ten10/ba22b9d7ac14f3e2f7fd31dcaf275b21
+**Note:** Make sure to update the Dockerfile and the application code as needed for your specific project requirements. Mine is here => https://gist.github.com/8Ten10/ba22b9d7ac14f3e2f7fd31dcaf275b21
  
-#PS :This workflow is for demonstration purposes and might need adjustments for production environments.
+**#PS** :This workflow is for demonstration purposes and might need adjustments for production environments.
